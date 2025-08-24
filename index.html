@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To-Do List App</title>
+
+  <!-- Link CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="data:;base64,=" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title">My To-Do <span>List</span></h1>
+      <p class="app__subtitle">
+        Add tasks, mark complete, edit, delete — everything saves automatically.
+      </p>
+    </header>
+
+    <!-- Add new task -->
+    <section class="card">
+      <form id="new-task-form" autocomplete="off" aria-label="Add a new task">
+        <input
+          id="task-input"
+          name="task"
+          type="text"
+          placeholder="What do you need to do?"
+          maxlength="120"
+          required
+        />
+        <button id="add-task-btn" class="btn" type="submit">Add</button>
+      </form>
+      <div id="toast" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- Task list -->
+    <section class="card">
+      <div class="list__header">
+        <h2>Tasks</h2>
+        <div class="list__actions">
+          <button class="chip chip--active" type="button" data-filter="all">All</button>
+          <button class="chip" type="button" data-filter="active">Active</button>
+          <button class="chip" type="button" data-filter="completed">Completed</button>
+          <button id="clear-completed" class="chip danger" type="button">Clear Completed</button>
+        </div>
+      </div>
+
+      <ul id="task-list" class="task-list" aria-live="polite" aria-label="Task list"></ul>
+
+      <div class="list__footer">
+        <span id="items-left">0 items left</span>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Built with HTML, CSS &amp; Vanilla JS • Tasks saved in LocalStorage</p>
+    </footer>
+  </main>
+
+  <!-- Template for tasks -->
+  <template id="task-item-template">
+    <li class="task" data-id="">
+      <label class="task__check">
+        <input type="checkbox" class="task__toggle" />
+        <span class="custom-checkbox"></span>
+      </label>
+      <span class="task__text" contenteditable="false"></span>
+      <div class="task__actions">
+        <button class="icon-btn edit" title="Edit">✏️</button>
+        <button class="icon-btn delete" title="Delete">🗑️</button>
+      </div>
+    </li>
+  </template>
+
+  <!-- App logic -->
+  <script src="script.js" defer></script>
+
+  <!-- Confetti 🎉 -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
